@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: result
+  namespace: vote-app
   labels:
     app: result
-  name: result
-  namespace: vote
 spec:
   replicas: 1
   selector:
@@ -18,6 +18,10 @@ spec:
       containers:
       - image: dockersamples/examplevotingapp_result:before
         name: result
+        # resources:
+        #   limits:
+        #     memory: "80Mi"
+        #     cpu: "256m"
         ports:
         - containerPort: 80
           name: result

@@ -1,17 +1,16 @@
 apiVersion: v1
 kind: Service
 metadata:
+  name: vote-app
+  namespace: vote-app
   labels:
-    app: vote
-  name: vote
-  namespace: vote
+    name: vote-app
 spec:
+  selector:
+    name: vote-app
   type: NodePort
   ports:
-  - name: "vote-service"
+  - name: "vote-app-service"
     port: 5000
-    targetPort: 80
-    nodePort: 31000
-  selector:
-    app: vote
-  
+    targetPort: 80 #Container Port
+    nodePort: 32000 #Node Port on which app will be access

@@ -1,28 +1,32 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels:
-    app: db
+  namespace: vote-app
   name: db
-  namespace: vote
+  labels:
+    name: db
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: db
+      name: db
   template:
     metadata:
       labels:
-        app: db
+        name: db
     spec:
       containers:
-      - image: postgres:9.4
-        name: postgres
+      - name: postgres
+        image: postgres:9.4
         env:
         - name: POSTGRES_USER
           value: postgres
         - name: POSTGRES_PASSWORD
           value: postgres
+        # resources:
+        #   limits:
+        #     memory: "128Mi"
+        #     cpu: "15m"
         ports:
         - containerPort: 5432
           name: postgres
@@ -31,4 +35,4 @@ spec:
           name: db-data
       volumes:
       - name: db-data
-        emptyDir: {} 
+        emptyDir: {}
