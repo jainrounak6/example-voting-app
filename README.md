@@ -6,7 +6,7 @@ A simple distributed application running across multiple Docker containers.
 Getting started
 ---------------
 
-Download [Docker Desktop](https://www.docker.com/products/docker-desktop) for Mac or Windows. [Docker Compose](https://docs.docker.com/compose) will be automatically installed. On Linux, make sure you have the latest version of [Compose](https://docs.docker.com/compose/install/). 
+Download [Docker Desktop](https://www.docker.com/products/docker-desktop) for Mac or Windows. [Docker Compose](https://docs.docker.com/compose) will be automatically installed. On Linux, make sure you have the latest version of [Compose](https://docs.docker.com/compose/install/).
 
 
 ## Linux Containers
@@ -59,7 +59,7 @@ The folder k8s-specifications contains the yaml specifications of the Voting App
 First create the vote namespace
 
 ```
-$ kubectl create namespace vote
+$ kubectl apply -f k8s-specifications/vote-namespace.yaml
 ```
 
 Run the following command to create the deployments and services objects:
@@ -76,7 +76,11 @@ service "vote" created
 deployment "worker" created
 ```
 
-The vote interface is then available on port 31000 on each host of the cluster, the result one is available on port 31001.
+The vote interface is then available on port 32000 on each host of the cluster, the result one is available on port 32001.
+
+After completing testing delete the namespace.
+### To delete namespace
+`kubectl delete namespace vote-app`
 
 Architecture
 -----
@@ -95,6 +99,6 @@ Notes
 
 The voting application only accepts one vote per client. It does not register votes if a vote has already been submitted from a client.
 
-This isn't an example of a properly architected perfectly designed distributed app... it's just a simple 
-example of the various types of pieces and languages you might see (queues, persistent data, etc), and how to 
-deal with them in Docker at a basic level. 
+This isn't an example of a properly architected perfectly designed distributed app... it's just a simple
+example of the various types of pieces and languages you might see (queues, persistent data, etc), and how to
+deal with them in Docker at a basic level.

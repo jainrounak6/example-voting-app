@@ -26,7 +26,7 @@
 
 ## Clean Up Process
 ### To delete namespace
-`kubectl delete -namespace <namespace-name>`
+`kubectl delete namespace <namespace-name>`
 
 ### To delete deployment of specific Name Space
 `kubectl delete deployment <deployment-name> -n vote-app`
