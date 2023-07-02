@@ -76,6 +76,12 @@ service "vote" created
 deployment "worker" created
 ```
 
+OR
+
+You can directly run the all the files in one go using [kustomization file](k8s-specifications/kustomization.yaml). You have to install [Kustomization](https://kubectl.docs.kubernetes.io/installation/kustomize/) Package.
+
+`kubectl apply -k k8s-specifications`
+
 The vote interface is then available on port 32000 on each host of the cluster, the result one is available on port 32001.
 
 After completing testing delete the namespace.
